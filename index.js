@@ -24,4 +24,8 @@ app.use('/openai', require('./routes/openai.js'))
 // Enable cors
 app.use(cors())
 
+app.get('/', async (req, res) => {
+    res.status(200).json("Service is running")
+})
+
 app.listen(PORT, () => console.log('Server running on port ' + PORT))
