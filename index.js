@@ -22,7 +22,7 @@ app.use(express.json())
 app.use('/openai', require('./routes/openai.js'))
 
 // Enable cors
-app.use(cors())
+app.use(cors({origin: ['https://funwithopenai.herokuapp.com']}))
 
 app.get('/', async (req, res) => {
     res.status(200).json("Service is running")
