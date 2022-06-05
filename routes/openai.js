@@ -13,15 +13,19 @@ router.post('/', async (req, res) => {
             res.status(401).json('request missing prompt')
         } else if (body.max_tokens == undefined) {
             res.status(402).json('request missing max_tokens')
-        } else if (body.max_tokens != undefined && body.max_tokens > 200) {
-            res.status(403).json('Can\'t request for more than 200 words response')
+        } else if (body.max_tokens != undefined && body.max_tokens > 512) {
+            res.status(403).json('Can\'t request for more than 512 words response')
         } else if (body.model == undefined) {
             res.status(405).json('request missing data model')
         } else {
             const url = OPAI_BASE_URL + body.model + '/completions';
             const apiBody = {
                 "prompt": body.prompt,
-                "max_tokens": body.max_tokens
+                "max_tokens": body.max_tokens,
+                "temperature": body.temperature,
+                "top_p": body.top_p,
+                "frequency_penalty": body.frequency_penalty,
+                "presence_penalty": body.presence_penalty,
             }
             var options = {
                 headers: { 'Content-Type': 'application/json',
