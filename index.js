@@ -19,7 +19,7 @@ app.set('trust proxy', 1)
 app.use(express.json())
 
 // Enable cors
-app.use(cors({origin: ['https://funwithopenai.herokuapp.com', 'http://localhost:3000']}))
+app.use(cors({origin: ['https://funwithopenai.herokuapp.com']}))
 
 // Routes
 app.use('/openai', require('./routes/openai.js'))
