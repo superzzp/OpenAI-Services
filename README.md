@@ -2,5 +2,5 @@
 
 ## Setup
 ### Heroku Deployment
-heroku git:remote -a openai-services
-git push heroku main
+1. heroku git:remote -a openai-services
+2. git push heroku main
