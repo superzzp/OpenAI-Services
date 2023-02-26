@@ -14,7 +14,7 @@ router.post('/', async (req, res) => {
         } else if (body.max_tokens == undefined) {
             res.status(402).json('request missing max_tokens')
         } else if (body.max_tokens != undefined && body.max_tokens > 512) {
-            res.status(403).json('Can\'t request for more than 512 words response')
+            res.status(403).json('Can\'t submit a request for more than 512 words response')
         } else if (body.model == undefined) {
             res.status(405).json('request missing data model')
         } else {
