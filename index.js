@@ -3,7 +3,7 @@ const cors = require('cors')
 const rateLimit = require('express-rate-limit')
 require('dotenv').config()
 
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 4000
 
 const app = express()
 
@@ -19,13 +19,16 @@ app.set('trust proxy', 1)
 app.use(express.json())
 
 // Enable cors
-app.use(cors({origin: ['https://funwithopenai.herokuapp.com']}))
+app.use(cors({origin: [
+    'https://funwithopenai.herokuapp.com',
+    'http://localhost:3000'
+]}))
 
 // Routes
 app.use('/openai', require('./routes/openai.js'))
 
 app.get('/', async (req, res) => {
-    res.status(200).json("Service is running")
+    res.status(200).json("OpenAI Proxy Service is running")
 })
 
 app.listen(PORT, () => console.log('Server running on port ' + PORT))
