@@ -6,7 +6,7 @@ const router = express.Router()
 const OPAI_BASE_URL = process.env.OPAI_BASE_URL
 const OPAI_CREDENTIALS = process.env.OPAI_CREDENTIALS
 
-router.post('/completions', async (req, res) => {
+router.post('/completions/3.0', async (req, res) => {
     try {
         const body = req.body;
         if (body.prompt == undefined || body.prompt.trim().length == 0) {
@@ -46,7 +46,7 @@ router.post('/generations', async (req, res) => {
     try {
         const body = req.body;
         if (body.prompt == undefined) {
-            res.status(401).json('request missing prompt')
+            res.status(402).json('request missing prompt')
         } else {
             const url = OPAI_BASE_URL + '/images/generations';
             const apiBody = {
@@ -60,8 +60,7 @@ router.post('/generations', async (req, res) => {
             }
             const apiRes = await needle('post', url, apiBody, options)
             const apiResURL = apiRes.body.data[0].url
-            print(apiResURL)
-            res.status(200).json({"url": apiResURL})
+            res.status(200).json({"imgURL": apiResURL})
         }
     } catch (error) {
         console.log(error)

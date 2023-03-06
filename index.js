@@ -20,8 +20,7 @@ app.use(express.json())
 
 // Enable cors
 app.use(cors({origin: [
-    'https://funwithopenai.herokuapp.com',
-    'http://localhost:3000'
+    'https://funwithopenai.herokuapp.com'
 ]}))
 
 // Routes
